@@ -13,47 +13,49 @@ const users = {}
 
 io.on('connection', socket => {
 
-    if (log) {
-        socket.emit('load-messages', JSON.stringify(messages))
-    }
+    socket.emit('Works', 'Works')
+
+    // if (log) {
+    //     socket.emit('load-messages', JSON.stringify(messages))
+    // }
 
 
 
 
-    socket.on('new-user', userName => {
-        users[socket.id] = userName
-        socket.emit('user-connected', userName)
-        socket.broadcast.emit('user-connected', userName)
-        socket.emit('old-messages', JSON.stringify(messages))
+    // socket.on('new-user', userName => {
+    //     users[socket.id] = userName
+    //     socket.emit('user-connected', userName)
+    //     socket.broadcast.emit('user-connected', userName)
+    //     socket.emit('old-messages', JSON.stringify(messages))
 
-    })
-
-
-
-    socket.on('send-chat-message', message => {
-
-        messages.push(
-            { name: users[socket.id], message: message })
-        socket.broadcast.emit('chat-message', { name: users[socket.id], message: message })
-        console.log(messages)
+    // })
 
 
 
+    // socket.on('send-chat-message', message => {
 
-    })
-    socket.on('disconnect', () => {
-        socket.broadcast.emit('user-disconnected', users[socket.id])
-        delete users[socket.id]
-    })
+    //     messages.push(
+    //         { name: users[socket.id], message: message })
+    //     socket.broadcast.emit('chat-message', { name: users[socket.id], message: message })
+    //     console.log(messages)
+
+
+
+
+    // })
+    // socket.on('disconnect', () => {
+    //     socket.broadcast.emit('user-disconnected', users[socket.id])
+    //     delete users[socket.id]
+    // })
 
 
 })
 
-process.on('SIGINT', () => {
+// process.on('SIGINT', () => {
 
-    fs.writeFileSync('log', JSON.stringify(messages));
-    process.exit();
-})
+//     fs.writeFileSync('log', JSON.stringify(messages));
+//     process.exit();
+// })
 
 
 
