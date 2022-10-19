@@ -13,7 +13,7 @@ const users = {}
 
 io.on('connection', socket => {
 
-    console.log('works')
+    app.listen('connection', + port)
 
     // if (log) {
     //     socket.emit('load-messages', JSON.stringify(messages))
